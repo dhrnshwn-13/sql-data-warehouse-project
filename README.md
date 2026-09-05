@@ -16,6 +16,18 @@ The warehouse follows the **Medallion Architecture** across three layers:
 2. **Silver Layer** — Cleanses, standardizes, and normalizes the bronze data: trimming whitespace, resolving inconsistent codes into readable values, deriving missing fields, handling invalid dates, and deduplicating records. This layer prepares the data for analysis.
 3. **Gold Layer** — Business-ready data modeled into a **star schema** (fact and dimension tables) for reporting and analytics. This is the layer consumed by BI tools and analysts.
 
+### Data Flow
+
+![Data Flow Model](docs/dataflow.png)
+
+This shows how each source table moves through the bronze and silver layers before landing in its final gold layer object.
+
+### Integration Model
+
+![Integration Model](docs/integration_model.png)
+
+This shows how the CRM and ERP source tables relate to one another — e.g. `crm_prd_info` and `erp_px_cat_g1v2` both feed product data, while `crm_cust_info`, `erp_cust_az12`, and `erp_loc_a101` all feed customer data.
+
 ---
 
 ## Project Overview
@@ -83,6 +95,8 @@ sql-data-warehouse-project/
 ---
 
 ## Gold Layer Data Model
+
+![Data Mart Star Schema](docs/data_mart.png)
 
 The gold layer exposes three objects for reporting:
 
